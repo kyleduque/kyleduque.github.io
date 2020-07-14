@@ -1,0 +1,100 @@
+
+/*********************************** NAV SPECIFICS ***************************************/
+
+/* This forces emphasas on the currently active nav tab */
+.nav-link.active {
+    font-variant: small-caps;
+    font-weight: bold;
+}
+
+/*For whatever reason the Rows are using a -15 margin, reset to 0
+ * apparently it's these 'gutters'? need to maybe look into these..*/
+#main_nav, #secondary_nav, #content_row {
+    margin:0;
+}
+
+/*********************************** CATALOGUE SEARCH SPECIFICS ********************************/
+/*Need to remove this height:80vh hack.
+    If content isn't full height we get boatloads of whitespace
+    And if content is too large it blows off the bottom of the screen*/
+#search_results, #search_filters, #search_details  {
+    padding-top: 5px;
+    overflow-y:scroll;
+    overflow-x: wrap;
+    /* Would be nice to be able to run with a minimum height to force allowable
+    content spacing on shitty (teensy) viewports
+    min-height: 500px;*/
+    height: 80vh;
+}
+
+/*Give those add all buttons some room to breathe */
+#search_result_list {
+    padding:0;
+    margin-bottom: 0%;
+    margin-left: 5px;
+}
+
+/*Need to push the search listed items to the right a bit*/
+#search_result_item {
+    margin-left:5px;
+
+}
+
+/*Move the text search box down a wee bit so the highlight is noticable*/
+#search_box {
+    margin:5px;
+    padding:5px;
+}
+
+/*Force some indentation in the course description boxes*/
+#description, #textbooks, #prerequisites {
+    margin-left:2%;
+}
+
+#add_all_to_compare, #add_all_to_planner {
+    width: 100%;
+    margin:5px;
+    /*Forcing word break doesn't work on buttons... see HTML:75 for fix*/
+    word-wrap: break-word;
+}
+
+/****************************** CATALOGUE COMPARE SPECIFICS *********************************/
+#compared_courses_legend {
+    padding-left: 5px;
+    padding-right: 0px;
+}
+
+/*Make sure the compared courses can scroll R<->L */
+#compared_courses {
+    overflow-x:auto;
+    overflow-y: hidden;
+}
+
+/*Creating a table like layout with set widths and heights for each item*/
+#compared_course {
+    /*Need to declare width alongside min-width for when columns are removed we were having strange resize issues*/
+    width:250px;
+    min-width: 250px;
+}
+
+/*Sneeky way to get so there isn't bleeding over of text from columns*/
+#compare_text {
+    padding-left: .5em;
+    padding-right: .5em;
+}
+
+#compare_item_course, #compare_item_name, #compare_item_description, #compare_item_textbook, #compare_item_prerequisites{
+    overflow-y: auto;
+}
+
+#compare_item_course, #compare_item_name {
+    height: 10vh;
+}
+
+#compare_item_description, #compare_item_textbook, #compare_item_prerequisites {
+    height: 15vh;
+}
+
+#compare_item_name, #compare_item_textbook{
+    background: lightgrey;
+}

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/Hagwartz.css">
+
+	<title>Catalogue</title>
+</head>
+
+<body>
+	<!--  MAIN NAV BAR -->
+	<div class="row" id="main_nav">
+		<div class="col-2 justify-content-start" id="nav_title_main">
+			<h1><a href="homepage.html">Hagwartz</a></h1>
+		</div>
+		<div class="col-10" id="nav_links_main">
+			<ul class="nav nav-tabs justify-content-end">
+				<li class="nav-item">
+					<a class="nav-link" href="homepage.html">Home</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="schedule.html">Schedule</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="registration.html">Registration Planner</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link active" href="catalog.html">Course Catalogue</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+
+	<!-- SECONDARY NAV BAR -->
+	<div class="row" id="secondary_nav">
+		<div class="col-2 justify-content-start" id="nav_title_secondary">
+			<h2>Compare Courses</h2>
+		</div>
+		<div class="col-10" id="nav_title_secondary">
+			<ul class="nav nav-tabs justify-content-end">
+				<li class="nav-item">
+					<a class="nav-link" href="catalog-prereq.html">Prerequisite</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link " href="catalog.html">Search</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link active" href="catalog-compare.html">Compare</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<!-- ACTUAL COMPARE BODY -->
+	<div class="row d-flex" id="content_row">
+		<!-- The legend of who's what-->
+		<div class="col-2 h-100" id="compared_courses_legend">
+			<div id="compare_item_course"><b>Course:</b></div>
+			<div id="compare_item_name"><b>Name:</b></div>
+			<div id="compare_item_description"><b>Description:</b></div>
+			<div id="compare_item_textbook"><b>Textbook(s)</b></div>
+			<div id="compare_item_prerequisites"><b>Pre-Requisites</b></div>
+		</div>
+		<div class="col-10 h-100 shadow">
+			<div class="row h-100 d-flex align-items-stretch flex-nowrap" id="compared_courses">
+					<a href="catalog.html">Add some courses to compare to view them here.</a>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/Hagwartz.js"></script>
+	<script type="text/javascript">
+		function removeFromCompare(button) {
+			//Remove the course from the localStorage isCompare
+			let isCompared = localStorage.getObj("isCompare");
+			if(0 < button.id && button.id < isCompared.length) {
+				isCompared[button.id] = "No";
+				localStorage.setObj(isCompared[0], isCompared);
+				button.parentElement.parentElement.style.display = "none";
+			
+				//If there are no more elements display the string
+				let otherCourses = button.parentElement.parentElement.parentElement.children;
+				let isAllHidden = true;
+
+				for(i=0; i<otherCourses.length && isAllHidden; i++) {
+					console.log(otherCourses[i].style.display);
+					isAllHidden = otherCourses[i].style.display.indexOf("none") > -1;
+					console.log(isAllHidden);
+				}
+
+				if(isAllHidden)
+					button.parentElement.parentElement.parentElement.innerHTML = "<a href=\"catalog.html\">Add some courses to compare to view them here.</a>";
+			}
+		}
+
+		function populateListsFromStorage() {
+			//Grab the required lists from storage
+			let depts = localStorage.getObj("Departments");
+			let courseNums = localStorage.getObj("CourseNumbers");
+			let names = localStorage.getObj("ShortNames");
+			let descriptions = localStorage.getObj("CourseDescriptions");
+			let textbooks = localStorage.getObj("RequiredTextbooks");
+			let prereqs = localStorage.getObj("Pre-Requisites");
+			let isCompared = localStorage.getObj("isCompare");
+
+			let comparedCourses = "";
+			let prereq="None";
+
+			for(i=1; i<isCompared.length; i++ ) {
+				prereq = "None";
+				if(isCompared[i].indexOf("Yes") > -1) {
+					//Found a course that's supposed to be compared. Lets fill in the giblets!
+					//Fix up the textbook formatting
+					let textbook = textbooks[i].replace(/, By/g, "<br>&emsp;By").replace(/,/g, "<br>");
+
+					//Need to resolve the Pre-requisites
+					if(prereqs[i] != "") {
+						prereq = "";
+						let prereqArr = prereqs[i].split(', ');
+						for(j=0; j< prereqArr.length; j++)
+							prereq += `<a href="catalog.html?id=${prereqArr[j]}">${depts[prereqArr[j]]} ${courseNums[prereqArr[j]]} : ${names[prereqArr[j]]}</a><br>`;
+					}
+
+					
+					comparedCourses += `
+					<div class="" id="compared_course">
+						<div id="compare_item_course"><div id="compare_text"><h3>${depts[i]} ${courseNums[i]}<h3></div></div>
+						<div id="compare_item_name"><div id="compare_text"><b><a href="catalog.html?id=${[i]}">${names[i]}</a></b></div></div>
+						<div id="compare_item_description"><div id="compare_text">${descriptions[i]}</div></div>
+						<div id="compare_item_textbook"><div id="compare_text">${textbook}</div></div>
+						<div id="compare_item_prerequisites"><div id="compare_text">${prereq}</div></div>
+						<div id="compare_text"><button type="button" class="btn btn-lg btn-block btn-outline-secondary" id="${i}" onclick="removeFromCompare(this)">Remove</button></div>
+					</div>`
+				}
+			}
+			if(comparedCourses != "")
+				document.getElementById("compared_courses").innerHTML = comparedCourses;
+		}
+
+		$(document).ready(function () {
+			//Fill the search results list with elements
+			populateListsFromStorage();
+		});
+	</script>
+</body>
+
+</html>
+<!--
+TODO:
+	DONE!
+	-->

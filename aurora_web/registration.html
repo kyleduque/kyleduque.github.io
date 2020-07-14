@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/Hagwartz.css">
+
+	<title>Registration</title>
+</head>
+
+<style>
+	body {
+			height:100vh;
+		}
+
+		#content_row {
+			height:90vh;
+		}
+
+		#outline_area {
+			overflow:auto;
+			height:90vh;
+		}
+
+		.panel-heading {
+			background-color: white;
+			margin-bottom: 5px;
+		}
+		
+		.panel-footer {
+			background-color: white;
+		    position: sticky;
+		    bottom: 0;
+		    padding: 5px;
+		}
+
+		.sectionList {
+			max-height: 40vh;
+			overflow-y:auto
+		}
+
+	    #table_area{
+	        overflow: auto;
+			margin:0;
+			padding: 0;	
+	    }
+		
+		#courses{
+			text-align: left;
+		}
+		
+		.btn-group{
+			margin-bottom: .5em;
+		}
+		
+ 		.reg{
+			position: absolute;
+			top: 452px;
+			left:285px
+		}
+	
+	</style>
+
+<body>
+
+	<nav class="row" id="main_nav">
+		<div class="col-2 justify-content-start" id="nav_title_main">
+			<h1><a href="homepage.html">Hagwartz</a></h1>
+		</div>
+		<div class="col-10" id="nav_links_main">
+			<ul class="nav nav-tabs justify-content-end">
+				<li class="nav-item">
+					<a class="nav-link" href="homepage.html">Home</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="schedule.html">Schedule</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link active" href="registration.html">Registration Planner</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="catalog.html">Course Catalogue</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
+	<div class="row" id="content_row">
+		<div class="col-4" id="outline_area">
+			<div class="panel panel-default">
+				<div class="panel-heading sticky-top justify-content-between">
+					<h2>Planner Sections</h2>
+					<button type="button" class="btn btn-outline-secondary btn-lg" id="registerAll" onclick="registerAll()"> Register
+						all Planned</button>
+				</div> 
+				<div id="registered_course_list"></div>
+				<div class="panel-footer sticky-footer d-flex justify-content-between">
+					<h4>Legend:</h4>
+					<div class="btn-group btn-group">
+						<button type="button" class="btn btn-outline-success" disabled> Registered</button>
+						<button type="button" class="btn btn-outline-warning" disabled> Planned </button>
+						<button type="button" class="btn btn-outline-danger" disabled> Conflicting</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-8 shadow" id="table_area">
+			<div class="table-responsive">
+				<table class="table" id="schedule_table">
+					<thead>
+						<tr>
+							<th>Time</th>
+							<th>Monday</th>
+							<th>Tuesday</th>
+							<th>Wednesday</th>
+							<th>Thursday</th>
+							<th>Friday</th>
+							<th>Saturday</th>
+							<th>Sunday</th>
+						</tr>
+					</thead>
+					<tbody>
+						<!-- this is where we would put the registered courses in the schedule -->
+						<tr>
+							<td>8:30</td>
+							<td id="M_830"></td>
+							<td id="T_830"></td>
+							<td id="W_830"></td>
+							<td id="R_830"></td>
+							<td id="F_830"></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>9:30</td>
+							<td id="M_930"></td>
+							<td id="T_930"></td>
+							<td id="W_930"></td>
+							<td id="R_930"></td>
+							<td id="F_930"></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>10:30</td>
+							<td id="M_1030"></td>
+							<td id="T_1030"></td>
+							<td id="W_1030"></td>
+							<td id="R_1030"></td>
+							<td id="F_1030"></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>11:30</td>
+							<td id="M_1130"></td>
+							<td id="T_1130"></td>
+							<td id="W_1130"></td>
+							<td id="R_1130"></td>
+							<td id="F_1130"></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>12:30</td>
+							<td id="M_1230"></td>
+							<td id="T_1230"></td>
+							<td id="W_1230"></td>
+							<td id="R_1230"></td>
+							<td id="F_1230"></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>1:30</td>
+							<td id="M_130"></td>
+							<td id="T_130"></td>
+							<td id="W_130"></td>
+							<td id="R_130"></td>
+							<td id="F_130"></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>2:30</td>
+							<td id="M_230"></td>
+							<td id="T_230"></td>
+							<td id="W_230"></td>
+							<td id="R_230"></td>
+							<td id="F_230"></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>3:30</td>
+							<td id="M_330"></td>
+							<td id="T_330"></td>
+							<td id="W_330"></td>
+							<td id="R_330"></td>
+							<td id="F_330"></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>4:30</td>
+							<td id="M_430"></td>
+							<td id="T_430"></td>
+							<td id="W_430"></td>
+							<td id="R_430"></td>
+							<td id="F_430"></td>
+							<td></td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="modalWarning" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+	 aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLongTitle">Warning!</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body" id="modal_message">
+					Oh noes!
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal" id="modalWarningButtonFirst">Cancel</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal" id="modalWarningButtonSecond">Ok</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/Hagwartz.js"></script>
+	<script type="text/javascript">
+		var allSectionsList = ["M W F 830", "M W F 930", "M W F 1030", "M W F 1130", "M W F 1230", "M W F 130", "M W F 230", "M W F 330", "M W F 430",
+			"T R 830", "T R 930", "T R 1030", "T R 1130", "T R 1230", "T R 130", "T R 230", "T R 330", "T R 430"];
+		/**Redirect the button to the catalog page's description rather than */
+		function gotoDetailsPage(element) {
+			window.location.href = `catalog.html?id=${element.id}`;
+		};
+
+		function addAllToOutline() {
+
+			let plannedList = localStorage.getObj("isPlanned");
+
+			let registerList = localStorage.getObj("isRegistered");
+			let departments = localStorage.getObj("Departments");
+			let courseNum = localStorage.getObj("CourseNumbers");
+			let outputString = "";
+
+
+			for (i = 0; i < plannedList.length; i++) {
+				if (registerList[i] == "Yes") {
+					outputString += `
+					<div class="panel-body d-flex justify-content-between" id = "courses"><h5>${departments[i]} ${courseNum[i]}</h5>
+						<div class = "btn-group btn-group-lg">
+							<button type="button" class="btn btn-outline-danger" name="dropButton" id="${i}" onclick="dropCourse(${i})">Drop</button>
+							<button type="button" class="btn btn-outline-secondary" name="swapButton" id="${i}" disabled>Change sections</button>
+							<button type="button" class="btn btn-outline-danger disabled" name="removeButton" id="${i}" data-toggle="tooltip" data-placement="right" title="You must drop a course to remove it from the planner">X</button>
+						</div>
+					</div>`;
+
+
+
+				} else if (plannedList[i] == "Yes") {
+					outputString += `
+					<div class="panel-body d-flex justify-content-between" id = "courses"><h5>${departments[i]} ${courseNum[i]}</h5>
+						<div class = " btn-group btn-group-lg">
+							<button type="button" class="btn btn-outline-secondary" name="registerButton" id="${i}" onclick="registerCourse(${i})">Register</button>
+							<button type="button" class="btn btn-outline-secondary" name="swapButton" id="${i}" data-toggle="collapse" data-target="#sections_list_cid${[i]}">Change sections</button>
+							<button type="button" class="btn btn-outline-danger" name="removeButton" id="${i}" onclick="removeFromPlanner(${i})">X</button>
+						</div>
+					</div>
+					<div>
+						<ul class="sectionList collapse" id="sections_list_cid${[i]}">`;
+
+					//<input checked> for init state to contain the dot
+					for (j = 0; j < allSectionsList.length; j++) {
+						outputString += `<li class="list-group-item list-group-item-action" id="${j}" onclick = "swapSections(${j}, ${i})">
+												${allSectionsList[j]}
+											</li>`;
+					}
+					outputString += `</ul></div>`
+				}
+			}
+			document.getElementById("registered_course_list").innerHTML = outputString;
+		}
+
+		function swapSections(idNew, idOld) {
+			let sections = localStorage.getObj("Sections");
+
+			if (idOld > 0) {
+				sections[idOld] = allSectionsList[idNew];
+				localStorage.setObj(sections[0], sections);
+				resetSchedule();
+			}
+		}
+
+		function addAllToSchedule() {
+			let plannedList = localStorage.getObj("isPlanned");
+			let registerList = localStorage.getObj("isRegistered");
+			let departments = localStorage.getObj("Departments");
+			let courseNum = localStorage.getObj("CourseNumbers");
+			let sections = localStorage.getObj("Sections");
+
+			/* Format of sections as per the spreadsheet: 
+			 * ["Sections",(<daysOffered> <timeOffered>), ...]
+			 * 		<daysOffered> consists of letters MTWRFSN seperated by a space for the days on which the section runs
+			 * 		<timeOffered> consists of a 24h format regarding the time at which the section starts (each section runs for an hour)
+			*/
+			let outputString = "";
+			for (i = 1; i < plannedList.length; i++) {
+				outputString = "";
+				//If a course is registered it must be in the planned list..
+				//We can also assume that there are no conflicts with other courses. 
+				if (registerList[i].indexOf("Yes") > -1) {
+					outputString = `
+					<button type="button" class="btn btn-outline-success" id="${i}" name="scheduled_section" onclick="gotoDetailsPage(this)">
+						${departments[i]} ${courseNum[i]}
+					</button>`;
+
+				} else if (plannedList[i].indexOf("Yes") > -1) {
+					outputString = `
+						<button type="button" class="btn btn-outline-warning" id="${i}" name="scheduled_section" onclick="gotoDetailsPage(this)">
+							${departments[i]} ${courseNum[i]}
+						</button>`;
+				}
+
+				/*
+				Here we will need to change the button's colour based on whether or not there are elements existing in the table
+				at the position for which we want to add a new button. As well, we will need to change the other existing button 
+				to a red one if it is a planned section and not a registered one (registered courses are always green)
+				
+				Also need an on-click event that tells the user the status of the course (why it's coloured the way it is)*/
+				if (outputString.length > 0) {
+					let section = sections[i].split(' ');
+					//section[j] referrs to the days that the course is offered
+					//section[len] refers to the time that the course is offered
+					for (j = 0; j < section.length - 1; j++) {
+						if (document.getElementById(section[j] + "_" + section[section.length - 1]).innerHTML.length == 0) {
+							document.getElementById(section[j] + "_" + section[section.length - 1]).innerHTML = outputString;
+
+						} else {
+							//We are trying to add a section to the table where there is already a section..
+							document.getElementById(section[j] + "_" + section[section.length - 1]).innerHTML += outputString;
+							// we will change all warning buttons danger buttons
+							document.getElementById(section[j] + "_" + section[section.length - 1]).innerHTML =
+								document.getElementById(section[j] + "_" + section[section.length - 1]).innerHTML.replaceAll(
+									"btn-outline-warning", "btn-outline-danger");
+						}
+					}
+				}
+			}
+		}
+
+		function registerCourse(id) {
+			if (id > 0) {
+				//Need to check to see if there is a course that is green in the table cell. If so don't register.
+				//document.getElementsByName("scheduled_section")[13].parentElement.innerHTML.indexOf("btn-outline-success") > -1
+				let schedClasses = document.getElementsByName("scheduled_section");
+				
+				let isCollision = false;
+				//Search list for id
+				for (i = 0; i < schedClasses.length && !isCollision; i++)
+					if (schedClasses[i].id == id)
+						isCollision = schedClasses[i].parentElement.innerHTML.indexOf("btn-outline-success") > -1;
+
+				if (isCollision) {
+					let depts = localStorage.getObj("Departments");
+					let courseNums = localStorage.getObj("CourseNumbers");
+					//We have found the matching section but there is a collision.
+					warnUser("Change Sections", "Ok", `You Cannot register for ${depts[id]} ${courseNums[id]} because you are already registered for a section in this timeslot.
+											Please change sections for ${depts[id]} ${courseNums[id]}`,  clickSwapButton, id, "", "");
+				} else {
+					//We have found the matching section and there is no green button in the table cell.
+					let regCourses = localStorage.getObj("isRegistered");
+					regCourses[id] = "Yes";
+					localStorage.setObj(regCourses[0], regCourses);
+					resetSchedule();
+				}
+			}
+		};
+
+		function removeCourseReg(id) {
+			console.log("Dropping Course " + id);
+			regCourses = localStorage.getObj("isRegistered");
+			regCourses[id] = "No";
+			localStorage.setObj(regCourses[0], regCourses);
+			resetSchedule();
+		}
+
+		function dropCourse(id) {
+
+			if (id > 0) {
+				let department = localStorage.getObj("Departments")[id];
+				let courseNum = localStorage.getObj("CourseNumbers")[id];
+				
+				warnUser("Drop ", "Stay Registered", `Are you sure you want to drop ${department} ${courseNum}?`, removeCourseReg, id, "", "");
+			}
+		};
+
+		function registerAll() {
+			let plannedList = localStorage.getObj("isPlanned");
+
+			for (n = 1; n < plannedList.length; n++) {
+				if (plannedList[n] == "Yes") {
+					registerCourse(n);
+				}
+			}
+		};
+
+		function removeFromPlanner(id) {
+			togglePlanned(id);
+			resetSchedule();
+		};
+		/**Function simulates a click on the swap button for course id */
+		function clickSwapButton(id) {
+			//document.getElementsByName("swapButton")[2].click()
+			let swapButtons = document.getElementsByName('swapButton'); 
+			for(i=0;i<swapButtons.length;i++) {
+				if(swapButtons[i].id == id)
+					swapButtons[i].click();
+			}
+		}
+
+		/**Adds events to the drop buttons */
+		function addEventsToDropButtons() {
+			document.getElementsByName('dropButton').forEach(function (button, arrId, parent) {
+				button.addEventListener('click', function () {
+					if (button.id != 0) {
+						regCourses = localStorage.getObj("isRegistered");
+						regCourses[button.id] = "No";
+						localStorage.setObj(regCourses[0], regCourses);
+						resetSchedule();
+					}
+				});
+			});
+		}
+
+		/**Adds events to the register buttons */
+		function addEventsToRegisterButtons() {
+			//TODO Check to see if the section is red or yellow, if red error.
+			document.getElementsByName('registerButton').forEach(function (button, arrId, parent) {
+				button.addEventListener('click', function () {
+					if (button.id != 0) {
+						regCourses = localStorage.getObj("isRegistered");
+						regCourses[button.id] = "Yes";
+						localStorage.setObj(regCourses[0], regCourses);
+						resetSchedule();
+					}
+				});
+			});
+		}
+
+		/**Adds events to the Remove buttons */
+		function addEventsToRemoveButtons() {
+			//TODO Check to see if the section is red or yellow, if red error.
+			document.getElementsByName('removeButton').forEach(function (button, arrId, parent) {
+				button.addEventListener('click', function () {
+					if (button.id != 0) {
+						regCourses = localStorage.getObj("isPlanned");
+						regCourses[button.id] = "No";
+						localStorage.setObj(regCourses[0], regCourses);
+						resetSchedule();
+					}
+				});
+			});
+		}
+
+		/**Adds events to the register buttons */
+		function addEventsToSwapButtons() {
+			//TODO Check to see if the section is red or yellow, if red error.
+			document.getElementsByName('swapButton').forEach(function (button, arrId, parent) {
+				button.addEventListener('click', function () {
+					if (button.id != 0) {
+						//TODO Toggle visibility of div containg all available sections
+						console.log("Swapping sections");
+						resetSchedule();
+					}
+				});
+			});
+		}
+
+		function resetSchedule() {
+			//empty out the table
+			//document.getElementsByTagName('tr')[1].cells[1].innerHTML = ""
+			tableRows = document.getElementsByTagName('tr');
+
+			for (i = 1; i < tableRows.length; i++) {
+				for (j = 1; j < tableRows[i].cells.length; j++)
+					tableRows[i].cells[j].innerHTML = "";
+			}
+
+			addAllToOutline();
+			addAllToSchedule();
+
+		}
+
+		/**Function opens a custom modal with options to change buttons, text and the function called when the user clicks OK */
+		function warnUser(primaryButton, secondaryButton, dialogText, functionOnPrimary, primaryArgs, functionOnSecondary, secondaryArgs) {
+			document.getElementById("modal_message").innerText = dialogText;
+			
+			if(secondaryButton == "") {
+				document.getElementById("modalWarningButtonFirst").style.display = "none";
+			} else
+				document.getElementById("modalWarningButtonFirst").style.display = "";
+				document.getElementById("modalWarningButtonFirst").innerText = secondaryButton;
+				if(functionOnSecondary != "")
+					document.getElementById("modalWarningButtonFirst").parentNode.children[0].onclick = function() {functionOnSecondary(secondaryArgs); };
+
+			if(primaryButton == "") {
+				document.getElementById("modalWarningButtonSecond").style.display = "none";
+			} else {
+				document.getElementById("modalWarningButtonSecond").style.display = "";
+				document.getElementById("modalWarningButtonSecond").innerText = primaryButton;
+				if(functionOnPrimary != "")
+					document.getElementById("modalWarningButtonFirst").parentNode.children[1].onclick = function() {functionOnPrimary(primaryArgs); };
+			}
+			$('#modalWarning').modal('toggle');
+
+		}
+
+		$(document).ready(function () {
+			//Fill the search results list with elements
+			addAllToOutline();
+			addAllToSchedule();
+
+			//Enable Tooltips  delay: { "show": 500
+			$('[data-toggle="tooltip"]').tooltip();
+		});
+
+
+	</script>
+</body>
+
+</html>
+
+<!--TODO
+		Click on a scheduled section needs to show status and maybe course info? (could also look into a long onHover)
+		
+		Click on 'Change Sections' checkbox needs to change the Sections[i] to whatever the new section selection entails
+			-There is a bug where the 'hover over new sections doesn't show up in the schedule as of yet'
+		Clicking register all with multiple conflicgs only shows the dailog for the last conflicting course
+-->

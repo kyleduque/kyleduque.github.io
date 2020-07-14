@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="signin.css" rel="stylesheet">
+
+	<title>Login</title>
+</head>
+
+<style>
+	/*Force body to full size so we can center horiz and vertically*/
+	body {
+		height:100vh;
+		background-image: url('img/indexBlur.png');
+    	background-repeat: no-repeat;
+		background-size: 100% 100%;
+	}
+
+	/*Shove the Sign In text to the center of the form*/
+	h1 {
+		text-align: center;
+	}
+
+	/*Put some size constraints on the form so it's always a nice size*/
+	.form-signin {
+			width:50%;
+			min-width: 250px;
+			max-width: 500px;
+			padding-bottom: 10%;
+		}
+	/*When input is valid, make it green!*/
+	input:valid {
+		background-color: #adebad;
+	}
+
+	/*When input is invalid, make it red!*/
+	input:invalid {
+		background-color: #ffefef;
+	}
+
+	/*Gotta throw some space between the buttons so we can see the pretty outline*/
+	#inputEmail, #inputPassword {
+		margin-bottom:5px;
+	}
+
+
+	</style>
+
+<body>
+	<div class="d-flex h-100 justify-content-center align-items-center">
+		<form class="form-signin" action="homepage.html">
+			<h1 class="mb-3 font-weight-normal">
+				Sign in</h1>
+
+			<label for="inputEmail" class="sr-only">
+				Email address</label>
+			<input type="email" id="inputEmail" class="form-control" placeholder="UserID@Hagwartz.wiz" required autofocus>
+
+			<label for="inputPassword" class="sr-only">
+				Password</label>
+			<input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+
+			<label><input type="checkbox" value="remember-me">
+				Remember me</label>
+
+			<button class="btn btn-lg btn-primary btn-block" type="submit">
+				Sign in</button>
+		</form>
+	</div>
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/Hagwartz.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			/*
+				Ignore the commas within #,# blocks
+				$ Represents newline
+				0NF database let's go! :D
+
+				To generate the string:
+					Export spreadsheet as CSV
+					Replace all instances of '"' with '#'
+					Replace all instances of '\n' with '$'
+					Put a $ at the end of the string (lazy programmer)
+					Paste the resulting single line string here vVv */
+			saveCSVToLocalStorage("isCompare,isPlanned,Sections,isRegistered,Departments,CourseNumbers,ShortNames,Professors,Pre-Requisites,RequiredTextbooks,isOnline,CreditHours,CourseLevel,Semesters,CourseDescriptions$No,Yes,M W F 830,Yes,Beard,101,Basics,Abus Dopedoor,,#Running With Scissors, By Augusten Burroughs#,No,3,1,fws,An introductory course to the wonders of facial hair!$Yes,No,T R 830,No,Beard,201,Trimming,Abus Dopedoor,1,#How To Train Your Beard, By Hagrid Cowell#,No,3,2,fws,Proper Trimming technuque is essential for having the most fantastic facial hair. In this class we move into the animation of sterling scissors!$Yes,No,M W F 930,No,Beard,210,Sideburns,Abus Dopedoor,1,#Trimming Your Bush, By Anne Fetamine#,No,3,2,fws,#No longer shall your facial spells be put on the back burner, bring them forward and wear them proud!#$Yes,No,T R 430,No,Beard,211,Nose Hairs,Abus Dopedoor,1,#The Nasty Bits, By Anthony Bourdain#,No,3,2,fws,Keep people from getting too nosey and learn the art of deception.$No,No,M W F 1230,No,Beard,301,Styling,Abus Dopedoor,2,#Still Stripping After 25 Years, By Eleanor Burns#,No,3,3,fws,For Fuller Facial Fur.$No,No,T R 1130,No,Beard,406,Goatees,Abus Dopedoor,#2, 9#,#Three Billy Goats Gruff, By Peter Christen Asbjørnsen#,No,3,4,fws,#Beginners Billy Goating, partnered project.#$No,No,M W F 230,No,Beard,450,Mustaches,Abus Dopedoor,#2, 4#,#Jupiter's Travels, By Ted Simon#,No,6,4,fws,Come for a ride in this course about the mystical properties of tounge above the lip wonders.$No,Yes,M W F 930,Yes,Dark,101,Basics,Seven Snipe,,#Black Holes; The Reith Lectures, By Dr Steven Hawkings#,No,3,1,fws,The practice of dark arts is an elightening class about many things which cannot be named.$No,No,T R 1230,No,Dark,9001,Dragonz,Seven Snipe,8,#Defensive Magical Theory, By Wilbert Slinkhard#,No,6,Grad,f,Increase your power level with this class.$No,Yes,M W F 1030,No,Pots,101,Basics,Horace Slughorn,,#It's Not You; It's The Dishes, By Paula Szuchman & Co.#,No,3,1,fws,Learn the elemental basics and how to draw them out of everyday substences.$No,No,T R 1130,No,Pots,200,Bronze,Horace Slughorn,10,#The Life Changing Magic Of Tidying Up, By Marie Kondo#,No,3,2,fws,Embuing potions in bronze can cause many interesting double sided effects.$No,No,M W F 1030,No,Pots,300,Mythril,Horace Slughorn,#2, 11#,#The Day My Uncle Got Drunk, By Ken Jeong#,No,3,3,fws,See how using mythril can bring elements of other ethers into our own.$Yes,No,T R 230,No,Pots,1337,Platnum,Horace Slughorn,12,#Gone With The Gin, By Tim Federle#,No,6,Grad,w,Become a master of all basic elements from any dimension and purge their impurities with this course.$No,Yes,M W F 1130,No,Creatures,101,Basics,Rubus Higrid,,#The Owl Who Was Afraid of The Dark, By Jill Tomlinson#,No,3,1,fws,Habits and Diets of mythical creatures.$No,No,M W F 1130,No,Creatures,320,Approach,Rubus Higrid,14,#Kicked Bitten & Scratched, By Amy Sutherland#,No,3,3,fws,How to approach mystical creatures.$No,No,M W F 1130,No,Creatures,420,Practice,Rubus Higrid,15,#The Man-Eater Book, By Mimic#,No,3,4,fws,#Not everything that is stationary is inanimate, be aware of the world (no refunds on lost hands).#$Yes,No,T R 1130,No,Creatures,666,Summations,Rubus Higrid,#9, 16#,#The Necronomicon, By H. P. Lovecraft#,No,3,Grad,s,How to call upon creatures of ethereal realms.$No,Yes,M W F 130,No,Herb,150,Soil Basics,Pomona Sprout,,#One Thousand Magical Herbs and Fungi, By Phyllida Spore#,No,3,1,fws,Building roots in the growth requirements of all kinds of herbs.$No,No,M W F 130,No,Herb,240,Watering,Pomona Sprout,18,#One Thousand Magical Herbs and Fungi, By Phyllida Spore#,No,3,2,fws,Basic watering techiques for magical plants and fungi.$No,No,M W F 130,No,Herb,330,Fertilizing,Pomona Sprout,19,#The Birds and the Bees, By Winny the Pooh#,No,3,3,fws,Types of fertilizers and growing technies that can be used to enhance the effects of magical plants and fungi.$Yes,No,T R 430,No,Herb,420,Weeds,Pomona Sprout,20,#Tha Doggfather, By Snoop Dogg#,No,3,4,fws,Delve into the deep dark web of not so illegal herbs.$No,No,M W F 230,No,Wand,100,Basics,Wanda Foop,,#How To Cure Petrification, By 5e#,No,3,1,fws,Wander no more with your wand to guide you in the world of wizarding!$No,Yes,T R 230,No,Wand,101,Staffs,Wanda Foop,,#All My Friends Are Dead By Avara Kedabra, By NoName#,No,3,1,fws,Staffing stuffed staffs with magic!$No,Yes,M W F 330,No,Hist,101,Runics,Cuthbert Binns,,#A History of Magic, By Bathilda Bagshot#,No,3,1,fws,Introduction to the history of wizards and the magical world such as historically significant events and figures.$No,No,T R 330,No,Hist,201,Artifacts,Cuthbert Binns,24,#A History of Magic, By Bathilda Bagshot#,No,3,2,fws,Advanced history of the wizarding world and exploring common historical artifacts and their use in the wizarding world.$No,No,T R 930,No,Beard,102,Eyebrows,Abus Dopedoor,,#Blah, By Blab#,No,3,1,fws,Blah$");
+		});
+	</script>
+</body>
+
+</html>
+
+<!--TODO
+		Check input for validity
+			Email must contain .*[@].*[.].*
+			Password must be length and characters? Password must exist.. those require tags don't seem to be doing anything.	
+
+
+-->

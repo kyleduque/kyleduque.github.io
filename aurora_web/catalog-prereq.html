@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/Hagwartz.css">
+	<style>
+		body {
+			height:100vh;
+		}
+
+		#content_row {
+			height:80vh;
+		}
+
+		#department_beard_bg {
+    		background-image: url('img/Beard.png');
+    		background-repeat: no-repeat;
+    		background-size: 100% 100%;
+		}
+
+		#prereq_row {
+			margin-top: 3em;
+		}
+
+		#dept_button {
+			margin-bottom: 1em;
+		}
+
+		#graph_div {
+			overflow-y: auto;
+		}
+	</style>
+
+
+	<title>Catalogue</title>
+</head>
+
+<body>
+	<!--  MAIN NAV BAR -->
+	<div class="row" id="main_nav">
+		<div class="col-2 justify-content-start" id="nav_title_main">
+			<h1><a href="homepage.html">Hagwartz</a></h1>
+		</div>
+		<div class="col-10" id="nav_links_main">
+			<ul class="nav nav-tabs justify-content-end">
+				<li class="nav-item">
+					<a class="nav-link" href="homepage.html">Home</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="schedule.html">Schedule</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="registration.html">Registration Planner</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link active" href="catalog.html">Course Catalogue</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+
+	<!-- SECONDARY NAV BAR -->
+	<div class="row" id="secondary_nav">
+		<div class="col-2 justify-content-start" id="nav_title_secondary">
+			<h2>View Prerequisites</h2>
+		</div>
+		<div class="col-10" id="nav_title_secondary">
+			<ul class="nav nav-tabs justify-content-end">
+				<li class="nav-item">
+					<a class="nav-link active" href="catalog-prereq.html">Prerequisite</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link " href="catalog.html">Search</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="catalog-compare.html">Compare</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<!-- ACTUAL PREREQ BODY -->
+	<div class="row " id="content_row">
+		<div class="col-2">
+			<button type="button" class="col-12 btn btn-outline-secondary btn-lg flex-fill startClick" id="dept_button"
+			 data-toggle="collapse" data-target="#department_beard_bg">Beard</button>
+
+			<button type="button" class="col-12 btn btn-outline-secondary btn-lg flex-fill" id="dept_button"
+			data-toggle="collapse" data-target="#department_dark_bg">Dark</button>
+
+			<button type="button" class="col-12 btn btn-outline-secondary btn-lg flex-fill" id="dept_button"
+			data-toggle="collapse" data-target="#department_pots_bg">Pots</button>
+
+			<button type="button" class="col-12 btn btn-outline-secondary btn-lg flex-fill" id="dept_button"
+			data-toggle="collapse" data-target="#department_creatures_bg">Creatures</button>
+
+			<button type="button" class="col-12 btn btn-outline-secondary btn-lg flex-fill" id="dept_button"
+			data-toggle="collapse" data-target="#department_herb_bg">Herb</button>
+
+			<button type="button" class="col-12 btn btn-outline-secondary btn-lg flex-fill" id="dept_button"
+			data-toggle="collapse" data-target="#department_wand_bg">Wand</button>
+
+			<button type="button" class="col-12 btn btn-outline-secondary btn-lg flex-fill" id="dept_button"
+			data-toggle="collapse" data-target="#department_hist_bg">Hist</button>
+		</div>
+		<div class="col-10 shadow" id="graph_div">
+
+
+			<!-- BEARD PRE-REQS GRAPH/TABLE THINGY -->
+			<div class="collapse active" id="department_beard_bg">
+				<div class="row justify-content-around d-flex" id="prereq_row">
+					<button type="button"  class="col-3 btn btn-secondary btn-lg flex-fill invisible" id="">Bloop<br />a</button>
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill" id="1">Beard 101<br />Basics</button>
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill" id="26">Beard 102<br />Eyebrows</button>
+				</div>
+				<div class="row justify-content-around d-flex" id="prereq_row">
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill" id="3">Beard 210<br />Trimming</button>
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill" id="2">Beard 201<br />Sideburns</button>
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill" id="4">Beard 211<br />Nosehairs</button>
+				</div>
+				<div class="row justify-content-around d-flex" id="prereq_row">
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill" id="9">Dark 9001<br />Dragonz</button>
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill" id="5">Beard 301<br />Styling</button>
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill invisible " id="">Blaap<br />a</button>
+				</div>
+				<div class="row justify-content-around d-flex" id="prereq_row">
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill" id="6">Beard 406<br />Goatees</button>
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill" id="7">Beard 450<br />Mustaches</button>
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill invisible " id="">Blaap<br />a</button>
+				</div>
+			</div>
+
+			<!-- DARK PRE-REQS GRAPH/TABLE THINGY -->
+			<div class="collapse" id="department_dark_bg">
+				<div class="row justify-content-around d-flex" id="prereq_row">
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill invisible" id="">Bloop<br />a</button>
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill" id="8">Dark 101<br />Basics</button>
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill invisible" id="26">Bloop<br />a</button>
+				</div>
+				<div class="row justify-content-around d-flex" id="prereq_row">
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill invisible" id="3">Bloop<br />a</button>
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill" id="9">Dark 9001<br />Dragonz</button>
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill invisible" id="4">Beard 211<br />a</button>
+				</div>
+			</div>
+
+			<!-- POTS PRE-REQS GRAPH/TABLE THINGY -->
+			<div class="collapse" id="department_pots_bg">
+				<div class="row justify-content-around d-flex" id="prereq_row">
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill invisible" id="">Bloop<br />a</button>
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill" id="10">Pots 101<br />Basics</button>
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill invisible " id="">Blaap<br />a</button>
+				</div>
+				<div class="row justify-content-around d-flex" id="prereq_row">
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill invisible " id="">Blaap<br />a</button>
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill" id="11">Pots 200<br />Bronze</button>
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill" id="">Beard 201<br />Trimming</button>
+				</div>
+				<div class="row justify-content-around d-flex" id="prereq_row">
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill invisible " id="">Blaap<br />a</button>
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill" id="12">Pots 300<br />Mythril</button>
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill invisible " id="">Blaap<br />a</button>
+				</div>
+				<div class="row justify-content-around d-flex" id="prereq_row">
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill invisible " id="">Blaap<br />a</button>
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill" id="13">Pots 1337<br />Platnum</button>
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill invisible " id="">Blaap<br />a</button>
+				</div>
+			</div>
+
+			<!-- CREATURES PRE-REQS GRAPH/TABLE THINGY -->
+			<div class="collapse" id="department_creatures_bg">
+				<div class="row justify-content-around d-flex" id="prereq_row">
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill invisible" id="">Bloop<br />a</button>
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill" id="14">Creatures 101<br />Basics</button>
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill invisible " id="">Blaap<br />a</button>
+				</div>
+				<div class="row justify-content-around d-flex" id="prereq_row">
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill invisible " id="">Blaap<br />a</button>
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill" id="15">Creatures 320<br />Approach</button>
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill invisible " id="">Blaap<br />a</button>
+				</div>
+				<div class="row justify-content-around d-flex" id="prereq_row">
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill invisible " id="">Blaap<br />a</button>
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill" id="16">Creatures 420<br />Practice</button>
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill" id="">Dark 9001<br />Dragonz</button>
+				</div>
+				<div class="row justify-content-around d-flex" id="prereq_row">
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill invisible " id="">Blaap<br />a</button>
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill" id="17">Creatures 666<br />Summations</button>
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill invisible " id="">Blaap<br />a</button>
+				</div>
+			</div>
+
+			<!-- HERB PRE-REQS GRAPH/TABLE THINGY -->
+			<div class="collapse" id="department_herb_bg">
+				<div class="row justify-content-around d-flex" id="prereq_row">
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill invisible" id="">Bloop<br />a</button>
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill" id="18">Herb 150<br />Soil Basics</button>
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill invisible " id="">Blaap<br />a</button>
+				</div>
+				<div class="row justify-content-around d-flex" id="prereq_row">
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill invisible " id="">Blaap<br />a</button>
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill" id="19">Herb 240<br />Watering</button>
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill invisible " id="">Blaap<br />a</button>
+				</div>
+				<div class="row justify-content-around d-flex" id="prereq_row">
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill invisible " id="">Blaap<br />a</button>
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill" id="20">Herb 350<br />Fertilizing</button>
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill invisible " id="">Blaap<br />a</button>
+				</div>
+				<div class="row justify-content-around d-flex" id="prereq_row">
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill invisible " id="">Blaap<br />a</button>
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill" id="21">Herb 420<br />Weeds</button>
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill invisible " id="">Blaap<br />a</button>
+				</div>
+			</div>
+
+			<!-- WAND PRE-REQS GRAPH/TABLE THINGY -->
+			<div class="collapse" id="department_wand_bg">
+				<div class="row justify-content-around d-flex" id="prereq_row">
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill" id="23">Wand 101<br />Staffs</button>
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill" id="22">Wand 100<br />Basics</button>
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill invisible " id="">Blaap<br />a</button>
+				</div>
+			</div>
+
+			<!-- HIST PRE-REQS GRAPH/TABLE THINGY -->
+			<div class="collapse" id="department_hist_bg">
+				<div class="row justify-content-around d-flex" id="prereq_row">
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill invisible" id="">Bloop<br />a</button>
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill" id="24">Hist 101<br />Runics</button>
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill invisible " id="">Blaap<br />a</button>
+				</div>
+				<div class="row justify-content-around d-flex" id="prereq_row">
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill invisible " id="">Blaap<br />a</button>
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill" id="25">Hist 201<br />Artifacts</button>
+					<button type="button" onclick="gotoDetailsPage(this)" class="col-3 btn btn-secondary btn-lg flex-fill invisible " id="">Blaap<br />a</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/Hagwartz.js"></script>
+	<script type="text/javascript">
+		/**Redirect the button to the catalog page's description rather than */ 
+		function gotoDetailsPage(element) {
+			window.location.href = `catalog.html?id=${element.id}`;
+		};
+		
+		//Cheeky hack to get the Beard button's content to be shown on page load
+		$(document).ready( $('button.startClick').click());
+	</script>
+</body>
+
+</html>
+<!--
+TODO:
+	FIXME: Need background images (The lines for behind the buttons) for DARK POTS CREATURES HERB WAND HIST
+	Graph Node onclick needs to make a box appear rather than redirect to the search page
+	Clicking on the toggle department buttons currently can 'stack' the graphs.. need to not do that
+		-May be able to attach an event handeller to the buttons and check data-target for state, if expanded then toggle...
+		-Users can also blank out page if they click on the currently active toggle department button
+	Graphs are puked all over the page rather than being dynamically generated right now... (so much copy pasta)
+	
+	-->

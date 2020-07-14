@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	  <meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	  <link rel="stylesheet" href="css/bootstrap.min.css">
+	  <link rel="stylesheet" href ="css/bootstrap.min.css">
+	  <link rel="stylesheet" href="css/Hagwartz.css">
+
+	  <title>Schedule</title>
+	</head>
+	<style media="print">
+		@page {size: landscape}
+
+		.noprint {
+			display:none;
+		}
+
+		#table_area {
+			width:100vw;
+			overflow:visible;
+		}
+	
+	</style>
+	<style>
+		
+		body {
+			height:100vh;
+		}
+
+		#content_row {
+			height:90vh;
+		}
+
+		.panel-heading {
+			background-color: white;
+		}
+
+		.sectionList {
+			max-height: 40vh;
+			overflow-y:auto
+		}
+
+	    #table_area{
+	        overflow: auto;
+			margin:0;
+			padding: 0;	
+	    }
+		
+		#courses{
+			text-align: left;
+		}
+		
+		.btn-group{
+			margin-bottom: .5em;
+		}
+		
+ 		.reg{
+			position: absolute;
+			top: 452px;
+			left:285px
+		}
+	
+	</style>
+	
+	<body>
+
+        <nav class="row noprint" id="main_nav">
+			<div class="col-2 justify-content-start" id="nav_title_main">
+				<h1><a href="homepage.html">Hagwartz</a></h1>
+			</div>
+			<div class="col-10" id="nav_links_main">
+				<ul class="nav nav-tabs justify-content-end">
+					<li class="nav-item">
+						<a class="nav-link" href="homepage.html">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link active" href="schedule.html">Schedule</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="registration.html">Registration Planner</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="catalog.html">Course Catalogue</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		
+	<div class="row " id="content_row">
+			<div class="col-3 d-flex flex-column noprint" id="outline_area">
+				<h2 class="noprint">Weekly Schedule</h2>
+				<div class="btn-group-vertical noprint">
+					<button id="btnGroupVerticalDrop1  btn-lg" type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown">
+						Semester:
+					</button>
+					<div class="dropdown-menu" x-placement="bottom-start" >
+							<a class="dropdown-item" href="#">2017 Fall</a>
+							<a class="dropdown-item" href="#">2017 Winter</a>
+							<a class="dropdown-item" href="#">2017 Summer</a>
+							<a class="dropdown-item" href="#">2018 Fall</a>
+							<a class="dropdown-item" href="#">2018 Winter</a>
+							<a class="dropdown-item" href="#">2018 Summer</a>
+							<a class="dropdown-item" href="#">2019 Fall</a>
+							<a class="dropdown-item" href="#">2019 Winter</a>
+							<a class="dropdown-item" href="#">2019 Summer</a>
+					</div>
+					<button type="button" class="btn btn-lg btn-outline-secondary">Export To Calendar</button>
+					<button type="button" class="btn btn-lg btn-outline-secondary" onclick="window.print()">Print Week at a Glance</button>
+					<button type="button" class="btn btn-lg btn-outline-secondary" disabled><div id="registered_course_num">Registered Courses: </div></button>
+					<button type="button" class="btn btn-lg btn-outline-secondary" disabled><div id="credit_hours">Credit Hours: </div></button>
+				</div>
+				
+			</div>
+			
+			<div class="col-9 shadow" id="table_area">
+				<div class="table-responsive">
+					<table class="table" id="schedule_table">
+						<thead>
+							<tr>
+							  <th>Time</th>
+							  <th>Monday</th>
+							  <th>Tuesday</th>
+							  <th>Wednesday</th>
+							  <th>Thursday</th>
+							  <th>Friday</th>
+							  <th>Saturday</th>
+							  <th>Sunday</th>
+							</tr>
+						</thead>
+						<tbody>
+							<!-- this is where we would put the registered courses in the schedule -->
+							<tr>
+							  <td>8:30</td>
+							  <td id = "M_830"></td>
+							  <td id = "T_830"></td>
+							  <td id = "W_830"></td>
+							  <td id = "R_830"></td>
+							  <td id = "F_830"></td>
+							  <td></td>
+							  <td></td>
+							</tr>
+							<tr>
+							  <td>9:30</td>
+							  <td id = "M_930"></td>
+							  <td id = "T_930"></td>
+							  <td id = "W_930"></td>
+							  <td id = "R_930"></td>
+							  <td id = "F_930"></td>
+							  <td></td>
+							  <td></td>
+							</tr>
+							<tr>
+							  <td>10:30</td>
+							  <td id = "M_1030"></td>
+							  <td id = "T_1030"></td>
+							  <td id = "W_1030"></td>
+							  <td id = "R_1030"></td>
+							  <td id = "F_1030"></td>
+							  <td></td>
+							  <td></td>
+							</tr>
+							<tr>
+							  <td>11:30</td>
+							  <td id = "M_1130"></td>
+							  <td id = "T_1130"></td>
+							  <td id = "W_1130"></td>
+							  <td id = "R_1130"></td>
+							  <td id = "F_1130"></td>
+							  <td></td>
+							  <td></td>
+							</tr>
+							<tr>
+							  <td>12:30</td>
+							  <td id = "M_1230"></td>
+							  <td id = "T_1230"></td>
+							  <td id = "W_1230"></td>
+							  <td id = "R_1230"></td>
+							  <td id = "F_1230"></td>
+							  <td></td>
+							  <td></td>
+							</tr>
+							<tr>
+							  <td>1:30</td>
+							  <td id = "M_130"></td>
+							  <td id = "T_130"></td>
+							  <td id = "W_130"></td>
+							  <td id = "R_130"></td>
+							  <td id = "F_130"></td>
+							  <td></td>
+							  <td></td>
+							</tr>
+							<tr>
+							  <td>2:30</td>
+							  <td id = "M_230"></td>
+							  <td id = "T_230"></td>
+							  <td id = "W_230"></td>
+							  <td id = "R_230"></td>
+							  <td id = "F_230"></td>
+							  <td></td>
+							  <td></td>
+							</tr>
+							<tr>
+							  <td>3:30</td>
+							  <td id = "M_330"></td>
+							  <td id = "T_330"></td>
+							  <td id = "W_330"></td>
+							  <td id = "R_330"></td>
+							  <td id = "F_330"></td>
+							  <td></td>
+							  <td></td>
+							</tr>
+							<tr>
+							  <td>4:30</td>
+							  <td id = "M_430"></td>
+							  <td id = "T_430"></td>
+							  <td id = "W_430"></td>
+							  <td id = "R_430"></td>
+							  <td id = "F_430"></td>
+							  <td></td>
+							  <td></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+	</div>
+
+	  <script src="js/jquery-3.3.1.min.js"></script>
+	  <script src="js/popper.min.js"></script>
+	  <script src="js/bootstrap.min.js"></script>
+	  <script src="js/Hagwartz.js"></script>
+	  <script type="text/javascript">
+	  
+		/**Redirect the button to the catalog page's description rather than */ 
+		function gotoDetailsPage(element) {
+			window.location.href = `catalog.html?id=${element.id}`;
+		};
+		
+		function addAllToSchedule(){
+			let registerList = localStorage.getObj("isRegistered");
+			let departments = localStorage.getObj("Departments");
+			let courseNum = localStorage.getObj("CourseNumbers");
+			let sections = localStorage.getObj("Sections");
+			let credits = localStorage.getObj("CreditHours");
+			
+			/* Format of sections as per the spreadsheet: 
+			 * ["Sections",(<daysOffered> <timeOffered>), ...]
+			 * 		<daysOffered> consists of letters MTWRFSN seperated by a space for the days on which the section runs
+			 * 		<timeOffered> consists of a 24h format regarding the time at which the section starts (each section runs for an hour)
+			*/
+			let outputString = "";
+			let numOfCourses = 0;
+			let totalCredits = 0;
+			for(i=1; i<registerList.length; i++) {
+				//If a course is registered it must be in the planned list..
+				//We can also assume that there are no conflicts with other courses. 
+				if(registerList[i].indexOf("Yes") > -1) {
+					numOfCourses++;
+					totalCredits += parseInt(credits[i], 10);
+
+					outputString = `
+					<button type="button" class="btn btn-outline-success" id="${i}" name="scheduled_section" onclick="gotoDetailsPage(this)">
+						${departments[i]} ${courseNum[i]}
+					</button>`;
+					
+					let section = sections[i].split(' ');
+					//section[j] referrs to the days that the course is offered
+					//section[len] refers to the time that the course is offered
+					for(j=0; j<section.length-1; j++)
+						document.getElementById(section[j] + "_" + section[section.length-1]).innerHTML += outputString;
+				
+				}
+			}
+				document.getElementById("credit_hours").innerHTML += "" + totalCredits + "";
+				document.getElementById("registered_course_num").innerHTML += "" + numOfCourses + "";
+		}
+		
+		$(document).ready(function () {
+			
+			
+			//Need to change up the page before attempting a print to fullsize the table
+			window.addEventListener("beforeprint" , function() {
+				document.getElementById("table_area").className = "";
+			});
+			
+			//Need to reset the page to how it was before the print
+			window.addEventListener("afterprint", function () {
+				document.getElementById("table_area").className = "col-9 shadow";
+			})
+
+			//Enable Tooltips  delay: { "show": 500
+			$('[data-toggle="tooltip"]').tooltip();
+			
+			
+			//Fill the schedule table with elements
+			addAllToSchedule();
+		});
+		
+	  
+		</script>
+	</body>
+</html>
+
+<!--TODO
+		This is a copy pasta of registration with some stripped functionality
+-->

@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/Hagwartz.css">
+	<style>
+	body {
+		height:100vh;
+	}
+	</style>
+
+	<title>Catalogue</title>
+</head>
+
+<body>
+	<!--  MAIN NAV BAR -->
+	<nav class="row" id="main_nav">
+		<div class="col-2 justify-content-start" id="nav_title_main">
+			<h1><a href="homepage.html">Hagwartz</a></h1>
+		</div>
+		<div class="col-10" id="nav_links_main">
+			<ul class="nav nav-tabs justify-content-end">
+				<li class="nav-item">
+					<a class="nav-link" href="homepage.html">Home</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="schedule.html">Schedule</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="registration.html">Registration Planner</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link active" href="catalog.html">Course Catalogue</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
+
+	<!-- SECONDARY NAV BAR -->
+	<nav class="row" id="secondary_nav">
+		<div class="col-2 justify-content-start" id="nav_title_secondary">
+			<h2>Refine Search</h2>
+		</div>
+		<div class="col-10" id="nav_title_secondary">
+			<ul class="nav nav-tabs justify-content-end">
+				<li class="nav-item">
+					<a class="nav-link" href="catalog-prereq.html">Prerequisite</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link active" href="catalog.html">Search</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="catalog-compare.html">Compare</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
+	<!-- ACTUAL SEARCH BODY -->
+	<div class="row" id="content_row">
+		<!-- SEARCH FILTERS -->
+		<div class="col-2 justify-content-start" id="search_filters">
+			Loading Content...
+		</div>
+		<div class="col-10 justify-content-end">
+			<div class="d-flex align-items-stretch shadow" id="search_container">
+					<!-- SEARCH RESULTS-->
+					<div class="col-3 search" id="search_results">
+						<!-- Autofocus tag forces user's cursor to the search box on page load-->
+						<input type="text" class="form-control sticky-top" id="search_box" placeholder="Search..." autofocus>
+						<!-- List is autopopulated by JS Functions-->
+						<ul class="list-group-flush list-group-item-action" id="search_result_list">
+							<li class="list-group-item list-group-item-action" id="search_result_item">Loading Content...</li>
+						</ul>
+						<!-- Strangely enough this <wbr> tag actaully breaks the buttons up, alas I couldn't get the CSS to cooperate-->
+						<button type="button" class="btn btn-outline-secondary sticky-bottom" id="add_all_to_planner">Add <wbr>Selection <wbr>to <wbr>Planner</button>
+						<button type="button" class="btn btn-outline-secondary sticky-bottom" id="add_all_to_compare">Add <wbr>Selection <wbr>to <wbr>Compare</button>
+
+					</div>
+
+					<!-- SEARCH RESULTS DETAILS -->
+					<div class="col-9" id="selected_result_details">
+						<div class="d-flex h-100 justify-content-center align-items-center">
+							Select a course in the list to view its details.
+						</div>
+					</div>
+			</div>
+
+		</div>
+	</div>
+
+
+
+
+
+
+
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/Hagwartz.js"></script>
+	<script type="text/javascript">
+		/* 
+		 * Ok so the idea with these enabled filters is that we have each filter belonging to a row of data
+		 * If a filter is changed we only need to re-check that row then compile the rest of the rows for a single set of visible elements
+		 * 
+		 * Filter Name| Each search_result
+		 * ___________|_____________________________________ 
+		 * Department |tttttttttttttttttttffffffffffffffffff
+		 * Prof       |ffttttttttttttttttttttttttttttttttttt
+		 * Year       |tttttttttffffffffffffffffffffffffffff
+		 *     ...    |
+		 *             AND__________________________________
+		 * 
+		 * Result :    fftttttttffffffffffffffffffffffffffff
+		 * 
+		 * Then we can apply the updateSearchResult(query) from the search_box to the Result set. (only act on t entries)
+		 * enabledFilters = [[searchTag, (t|f)*searchList.Length],
+		 * 					 [Department, (t|f)*searchList.Length]
+		 * 					 [Prof, (t|f)*searchList.Length]
+		 * 					 [Year, (t|f)*searchList.Length]]
+		*/
+		var enabledFilters = [];
+		var compiledFilters = [];
+
+		/**Grabs a list of courses to be used to search with from localStorage*/
+		function populateListsFromStorage() {
+			let resultList = document.getElementById("search_result_list");
+			let filterList = "";
+			var dataTags = ["Departments", "CourseNumbers", "ShortNames", "Professors", "Pre-Requisites", "isPlanned", "isRegistered", "CreditHours", "CourseLevel", "Semesters"];
+			var filterTags = ["Department", "", "", "Professor", "Has Pre-Requisites", "Added To Planner", "Currently Registered", "Credit Hours", "Year", "Semesters Offered"];
+			var dataArray = [];
+
+			for (i = 0; i < dataTags.length; i++) {
+				dataArray.push(localStorage.getObj(dataTags[i]));
+			}
+
+			//We don't care about which pre-reqs. Just if there are any
+			//This also gives us some special case programming for the event
+			dataArray[4] = ["Pre-Requisites", "Yes", "No"];
+
+			//Build the Search Filters List
+			//Each checkbox input has a name attrib. This is the key for the LocalStorage which we pull from
+			for (i = 0; i < filterTags.length; i++) {
+				let show = "";
+				if (i < 4)
+					show = "show";
+				if (filterTags[i] != "") {
+					filterList +=
+						`<div class="card shadow">
+							<button type="button" class="btn btn-outline-secondary" id="filter_${dataTags[i]}" data-toggle="collapse" data-target="#filter_list_${dataTags[i]}">${filterTags[i]}</button>
+							<ul class="collapse ${show}" id="filter_list_${dataTags[i]}">
+							<li><input type="checkbox" class="form-check-input" name="Filter_Checkbox" id="${dataTags[i]}" checked="true">All</li>`;
+
+					//Find the unique filterable elements in each filterable set
+					let uniqueFilters = [];
+					//If you're getting a 'Cannot read property length of null' error it's probably because the CSV hasn't been updated to include one of your dataTags... or a dataTag is typed incorrectly
+					for (j = 1; j < dataArray[i].length; j++) {
+						if (!uniqueFilters.includes(dataArray[i][j])) {
+							uniqueFilters.push(dataArray[i][j]);
+							filterList += `<li><input type="checkbox" class="form-check-input" name="Filter_Checkbox" id="${dataTags[i]}">${dataArray[i][j]}</li>`;
+						}
+					}
+					filterList += "</ul></div>";
+
+				}
+			}
+			document.getElementById("search_filters").innerHTML = filterList;
+
+			//Now we need to initilize the enabledFilters[[]]
+			for (i = 0; i < dataTags.length; i++) {
+				enabledFilters.push([dataTags[i]]);
+				//Start with j=1 b/c the first element is always the descriptor
+				for (j = 1; j < dataArray[0].length; j++)
+					enabledFilters[i].push(true);
+			}
+
+			//now we initilize the compiledFilters[]
+
+			for (i = 1; i < dataArray[0].length; i++)
+				compiledFilters.push(true);
+
+
+			//Build the Search Results list
+			resultList.innerHTML = "";
+			for (i = 1; i < dataArray[0].length; i++) {
+				resultList.innerHTML +=
+					`<li class="list-group-item list-group-item-action" name="search_result_list_item" id="${i}">
+					<input type="checkbox" class="form-check-input" name="search_result_list_checkbox" id=${i}>
+					<courseName>${dataArray[0][i] + " " + dataArray[1][i] + " : " + dataArray[2][i]}</courseName>
+				</li>`;
+			}
+		}
+
+		/** Filter a ul based on the internal checkboxes state's
+		 * Pass it either : 
+		 * 		document.getElementsByName('Filter_Checkbox')[0].parentElement.parentElement.children
+		 * 		checkBox.parentElement.parentElement.children
+		 * 
+		 */
+		function filterFilterList(li) {
+			//localStorage Key = li[0].firstElementChild.id
+			//Checkbox state = li[0].firstElementChild.checked
+			//String match is under li[0].innerText
+
+			if (li[0].firstElementChild.checked) {
+				//All box is checked. Just set entire ROW to true
+				//Find the KEY in the enabled filters and set all to true
+				let i = 0;
+				while (enabledFilters[i][0].indexOf(li[0].firstElementChild.id) < 0) { i++; }
+				for (j = 1; j < enabledFilters[i].length; j++)
+					enabledFilters[i][j] = true;
+			} else {
+				//All box is not checked. Set entire ROW to false and filter on checked box's innerText
+				let i = 0;
+				let key = li[0].firstElementChild.id;
+				while (enabledFilters[i][0].indexOf(key) < 0) { i++; }
+				for (j = 1; j < enabledFilters[i].length; j++)
+					enabledFilters[i][j] = false;
+				//Now filter all checked boxes 
+				let elems = localStorage.getObj(key);
+				for (j = 1; j < li.length; j++) {
+					if (li[j].firstElementChild.checked) {
+						//Found a checked box. Filter enabledFilters[i][k]
+						let query = li[j].innerText;
+						for (m = 1; m < elems.length; m++) {
+							//If an element of localStorage matches our query, set to true
+							if (!enabledFilters[i][m] && elems[m].indexOf(query) > -1) {
+								enabledFilters[i][m] = true;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		/** Collapse the enabledFilters and run updateSearchResults with the search_box data */
+		function compileFilterList() {
+			for (i = 0; i < compiledFilters.length; i++) {
+				compiledFilters[i] = true;
+				for (j = 0; compiledFilters[i] && j < enabledFilters.length; j++)
+					compiledFilters[i] = enabledFilters[j][i + 1];
+			}
+			updateSearchResults(document.getElementById('search_box').value.toUpperCase());
+		}
+
+
+		/**Update the search results list
+		 * We will change this method to take a list of strings, change the entire result list to "none" then set only those that pass with the filter to ""
+		*/
+		function updateSearchResults(query) {
+			var li, i;
+			li = document.getElementById("search_result_list").getElementsByTagName("li");
+
+			// Loop through all list items, and hide those who don't match the search query
+			for (i = 0; i < compiledFilters.length; i++) {
+
+				if (compiledFilters[i] && li[i].innerText.toUpperCase().indexOf(query) > -1) {
+					li[i].style.display = "";
+				} else {
+					li[i].style.display = "none";
+				}
+			}
+		}
+
+		/**Updates the search results details pane*/
+		function updateSearchResultDetails(id) {
+			document.getElementById("selected_result_details").innerHTML = getCourseDetails(id);
+
+		}
+
+		function addAllToCompare() {
+			//Grab the isCompare column from local storage
+			let compareList = localStorage.getObj("isCompare");
+
+			//This is just grabbing the checkbox elements from within the search results list
+			let checkboxes = document.getElementById("search_result_list").getElementsByTagName('input');
+
+			//now we go over each checkbox and find the checked ones
+			for (i = 0; i < checkboxes.length; i++) {
+
+				//if the checkbox is ticked we change the local storage column/array to refelect that change
+				if (checkboxes[i].checked == true)
+					compareList[i + 1] = "Yes";
+			}
+
+			//Now we commit all our changes to the local storage so they can be used by other pages
+			localStorage.setObj(compareList[0], compareList);
+		}
+
+		function addAllToPlanner() {
+			let plannedList = localStorage.getObj("isPlanned");
+			let checkboxes = document.getElementById("search_result_list").getElementsByTagName('input');
+			for (i = 0; i < checkboxes.length; i++) {
+				if (checkboxes[i].checked == true)
+					plannedList[i + 1] = "Yes";
+			}
+			localStorage.setObj(plannedList[0], plannedList);
+		}
+
+		$(document).ready(function () {
+			//Fill the search results list with elements
+			populateListsFromStorage();
+
+			//Add in our events
+
+			document.getElementsByName('Filter_Checkbox').forEach(function (checkBox, arrId, parent) {
+				if (checkBox.nextSibling.data.indexOf("All") > -1) {
+					//It's an All checkbox
+					checkBox.addEventListener('click', function () {
+						if (checkBox.checked) {
+							//Un -> Checked
+							//Deselect all other check boxes
+							let otherLIs = checkBox.parentElement.parentElement.children;
+							for (i = 1; i < otherLIs.length; i++) {
+								otherLIs[i].firstElementChild.checked = false;
+							}
+
+						} else {
+							//Checked -> Un
+							//Select all other check boxes
+							let otherLIs = checkBox.parentElement.parentElement.children;
+							for (i = 1; i < otherLIs.length; i++) {
+								otherLIs[i].firstElementChild.checked = true;
+							}
+
+							//We may not need to call these as user deselected ALL and we selected all others (filterList should be all true)
+						}
+						filterFilterList(checkBox.parentElement.parentElement.children);
+						compileFilterList();
+					});
+
+
+				} else {
+					//It's a Regular checkbox
+					checkBox.addEventListener('click', function () {
+						if (checkBox.checked) {
+							//Un -> Checked
+							//if 'all' is checked, un check it
+							checkBox.parentElement.parentElement.children[0].firstElementChild.checked = false;
+						} else {
+							//Checked -> Un
+							//if none are checked, check 'all'
+							let otherLIs = checkBox.parentElement.parentElement.children;
+							let isAnyChecked = false;
+							for (i = 0; i < otherLIs.length && !isAnyChecked; i++) {
+								isAnyChecked = otherLIs[i].firstElementChild.checked;
+							}
+
+							//Found none that were checked, check 'all' 
+							if (!isAnyChecked)
+								otherLIs[0].firstElementChild.checked = true;
+						}
+						filterFilterList(checkBox.parentElement.parentElement.children);
+						compileFilterList();
+					});
+				}
+			});
+
+			//We have to wrap the events in a nameless function so the actual function is called with our params when fired
+			document.getElementsByName('search_result_list_item').forEach(function (listItem, arrid, list) {
+				listItem.addEventListener('click', function () { updateSearchResultDetails(listItem.id) });
+			});
+
+			//Get the checkboxes to absorb the click event (don't pass it to the parent)
+			document.getElementsByName('search_result_list_checkbox').forEach(function (checkBox, id, list) {
+				checkBox.addEventListener('click', function (event) { event.stopPropagation(); }, false);
+			});
+
+			//Buttons at the bottom of the search results list
+			document.getElementById('add_all_to_compare').addEventListener('click', addAllToCompare);
+			document.getElementById('add_all_to_planner').addEventListener('click', addAllToPlanner);
+			//If a user adds a course to planner it should dissapear from the results list if the added to planner filter is selected.
+			document.getElementById('add_all_to_planner').addEventListener('click', function () {
+				updateSearchResults(document.getElementById('search_box').value.toUpperCase());
+			});
+
+			//Update results list when user types into the search box
+			document.getElementById("search_box").addEventListener('input', function () {
+				updateSearchResults(document.getElementById('search_box').value.toUpperCase());
+			});
+
+			//Look for the '?id=#' parameter in the URL (auto-propogates the search_result_details pane)
+			let id = new URL(window.location.href).searchParams.get("id");
+			if (id != null) {
+				let size = localStorage.getObj("Departments").length;
+				//Need to check to be sure that the given ID is within range (use localStorage Departments as our backcheck).
+				if (id < size && id > 0) {
+					updateSearchResultDetails(id);
+				} else {
+					console.warn("Unable to pre-fill search_result_details pane\n    URL Contains id out of bounds: " + id + " ∉ [1," + size + "]");
+				}
+			}
+
+		});
+
+	</script>
+</body>
+
+</html>
+<!--
+TODO:
+	Filters:
+		Has Pre-Reqs needs to get fixed
+		Added to Planner needs to get yes all up in it's foschnizzle
+	'Remove From Planner' should not be able to remove courses that are currently registered.. some form of error must appear?
+	Add Selection to Planner/Compare should only activate on visible elements where display:"" and ignores display:none
+	Fix that height/whitespace thing (currently hagwartz.css:26 height:80vh)
+	Force the AddToPlanner and AddToCompare buttons to the bottom of their container (may be because of the parent row?)
+
+	-->
