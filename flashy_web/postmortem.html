@@ -1,0 +1,242 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Post-Mortem &mdash; Flashy 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'./',
+              VERSION:'1.0',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Project Overview" href="overview.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Flashy
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Project Overview</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Post-Mortem</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-would-you-do-differently-if-you-had-the-chance-to-start-over">What would you do differently, if you had the chance to start over?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-took-the-most-time-the-least-any-surprises">What took the most time? The least? Any surprises?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-did-you-learn-about-team-or-large-project-development-what-will-you-start-doing-keep-doing-or-stop-doing-next-time">What did you learn about team or large project development? What will you start doing, keep doing, or stop doing next time?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#improvement-after-iteration-2-retrospective">Improvement after Iteration 2 retrospective</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Flashy</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Post-Mortem</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/postmortem.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="post-mortem">
+<h1>Post-Mortem<a class="headerlink" href="#post-mortem" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="what-would-you-do-differently-if-you-had-the-chance-to-start-over">
+<h2>What would you do differently, if you had the chance to start over?<a class="headerlink" href="#what-would-you-do-differently-if-you-had-the-chance-to-start-over" title="Permalink to this headline">¶</a></h2>
+<p>One of the main changes we would make if we had a chance to start over would be to spend more time learning the new technology required for this project immediately. Having to familiarize ourselves with Git and Android Studio as well as implementing a persistent HSQLDB was a major challenge in our development process. Having a solid grasp of the semantics of these various pieces of technology and their functions before jumping into implementation would have been a more efficient use of development time. Taking the time to fully understand the technology before trying to implement an application feature in an unfamiliar environment would have a helped a great deal in the design process as well.</p>
+<p>Another part of our approach that we would like to do differently is simply coming to a conclusive consensus more efficiently. We spent far too much time debating various design possibilities and solutions to different issues, and this was definitely a major roadblock in our design process. Different ideas without a clear decision creates issues of inconsistency that make it difficult to make further design decisions or identify how best to proceed, given that foundational uncertainty. If we had the chance to start over, creating a concrete timeline of when a feature’s implementation and development must begin and thus forcing a point at which its design must be chosen would make our process far more efficient.</p>
+</div>
+<div class="section" id="what-took-the-most-time-the-least-any-surprises">
+<h2>What took the most time? The least? Any surprises?<a class="headerlink" href="#what-took-the-most-time-the-least-any-surprises" title="Permalink to this headline">¶</a></h2>
+<p>The component of the project that took the most time was learning the new technologies required for this project, which was definitely a surprise. Understanding both the environments and functions of Git and Android Studio and its environment took significantly more time than expected. They’re both very powerful systems, but they also come with many nuances that were unlike anything our group had encountered previously, which introduced unexpected stumbling blocks. Learning more of the conventions of both and the proper workflow of creating an Android application (along with how to tackle a problem from this perspective) was one of the oversights.</p>
+<p>The persistent database also took us significantly more time to set up properly, which introduced complications that we were not fully prepared to handle immediately. It had seemed fairly straightforward prior to attempting the actual implementation, so this was another surprise.</p>
+<p>The part of this project that took the least amount of time was implementing the variations of Flashcards. Since we took advantage of inheritance our variant Flashcard objects, it was generally fairly easy to build upon that pre-existing foundation.</p>
+</div>
+<div class="section" id="what-did-you-learn-about-team-or-large-project-development-what-will-you-start-doing-keep-doing-or-stop-doing-next-time">
+<h2>What did you learn about team or large project development? What will you start doing, keep doing, or stop doing next time?<a class="headerlink" href="#what-did-you-learn-about-team-or-large-project-development-what-will-you-start-doing-keep-doing-or-stop-doing-next-time" title="Permalink to this headline">¶</a></h2>
+<p>Working within a team and doing large project development is hard. It’s difficult maintaining organization, consistency of ideas and properly delegating tasks between a large team in order to take full advantage of your resources. In particular, working on components of a project that are dependant on other components requires clear conventions and communications in order to maintain any sort of efficiency. On the other hand, being able to come up with ideas, brainstorm and gain inspiration from other’s ideas is far easier when you have multiple people to discuss them with. Throughout the entire design process, we were constantly generating ideas of different potential features and aspects that could be included in our application. There are definitely trade-offs when working in a large group, but we believe that with this and further experience working as part of a team and establishing productive frameworks in which to do so, the benefits can definitely outweigh the negatives.</p>
+<p>In the next large-scale project, we believe that properly identifying group roles within the project would go a long way towards clarifying responsibilities and current tasks for each member at any given time. This would significantly increase both organization and productivity, as a designated team leader can delegate tasks within the group. Maintaining this sort of unified consensus would also help prevent independent attempts to tackle problems singlehandedly that may result in wasted hours generating code that never ends up being used, as well as the creation of unique different implementations of solutions to the same problem. We think this would considerably increase general efficiency and allow us to realize more goals by taking full advantage of the resources at our disposal. In addition, establishing clear metrics and criteria in order to monitor the status of the application and its stage in the development cycle would also help both track progress and establish realistic goals.</p>
+<p>Throughout this project, we maintained positive team morale and an open attitude to encourage and adapt to new ideas, which we would definitely keep doing as we believe it helped a lot in overcoming adversity.</p>
+</div>
+<div class="section" id="improvement-after-iteration-2-retrospective">
+<h2>Improvement after Iteration 2 retrospective<a class="headerlink" href="#improvement-after-iteration-2-retrospective" title="Permalink to this headline">¶</a></h2>
+<p>We believe that the improvement identified in the Iteration 2 Retrospective was a success. In our retrospective, we discussed not being content with the state of the Manage Deck feature, particularly how this feature was implemented in a persistent database environment. After following the two plans to improve our feature (i.e. less talk, more code/test &amp; following the sample project), we were successfully able to implement the Manage Deck feature and lay nice groundwork for the other features that were implemented in iteration 3. We can confidently say we have reached our goal because the three levels of thorough testing discussed in the RETROSPECTIVE.md are all created and pass for everything involved with the Manage Decks feature.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="overview.html" class="btn btn-neutral float-left" title="Project Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Team 14
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
